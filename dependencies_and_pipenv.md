@@ -1,6 +1,6 @@
 ## Project Dependencies
 
-We use [pipenv](https://docs.pipenv.org) for managing project dependencies and Python environments (i.e. virtual environments). All of the direct packages dependencies required to run the code (e.g. NumPy for arrays/tensors and Pandas for DataFrames), as well as all the packages used during development (e.g. flake8 for code linting and IPython for interactive console sessions), are described in the `Pipfile`. Their precise downstream dependencies are described in `Pipfile.lock`.
+We use [pipenv](https://docs.pipenv.org) for managing project dependencies and Python environments (i.e. virtual environments). All of the direct packages dependencies required to run the code (e.g. NumPy for arrays/tensors and Pandas for DataFrames), as well as all the packages used during development (e.g. flake8 for code linting and IPython for interactive console sessions), are described in the `Pipfile`. Their **precise** downstream dependencies are described in `Pipfile.lock`.
 
 ### Installing Pipenv
 
@@ -20,7 +20,7 @@ For more information, including advanced configuration options, see the [officia
 
 ### Installing this Projects' Dependencies
 
-Make sure that you're in the project's root directory (the same one in which `Pipfile` resides), and then run,
+Make sure that you're in the project's root directory (the same one in which the `Pipfile` resides), and then run,
 
 ```bash
 pipenv install --dev
@@ -28,7 +28,7 @@ pipenv install --dev
 
 This will install all of the direct project dependencies as well as the development dependencies (the latter a consequence of the `--dev` flag).
 
-### Running Python, IPython and Jupyter from the Project's Virtual Environment
+### Running Python, IPython and Jupyter Lab from the Project's Virtual Environment
 
 In order to continue development in a Python environment that precisely mimics the one the project was initially developed with, use Pipenv from the command line as follows,
 
@@ -36,10 +36,20 @@ In order to continue development in a Python environment that precisely mimics t
 pipenv run python3
 ```
 
-The `python3` command could just as well be `ipython3` or the Jupter notebook server, for example,
+The `python3` command could just as well be `ipython3` or the Jupter Lab, for example,
 
 ```bash
-pipenv run jupyter notebook
+pipenv run jupyter lab
 ```
 
-This will fire-up a Jupyter notebook server where the default Python 3 kernel includes all of the direct and development project dependencies. This is how we advise that the notebooks within this project are used.
+This will fire-up a Jupyter Lab *where the default Python 3 kernel includes all of the direct and development project dependencies*. This is how we advise that the notebooks within this project are used.
+
+### Pipenv Shells
+
+Prepending `pipenv` to every command you want to run within the context of your Pipenv-managed virtual environment, can get very tedious. This can be avoided by entering into a Pipenv-managed shell,
+
+```bash
+pipenv shell
+```
+
+which is equivalent to 'activating' the virtual environment. Any command will now be executed within the virtual environment. Use `exit` to leave the shell session.

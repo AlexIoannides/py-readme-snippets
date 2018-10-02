@@ -6,7 +6,7 @@ The documentation in the `docs` folder has have been built using [Sphinx](http:/
 pipenv run sphinx-quickstart
 ```
 
-The output is based primarily on the Docstrings in the sourcecode, using the `autodoc` extension within Sphinx (specified during the 'quickstart'). The documentation can be built by running the following command,
+The output is based primarily on the Docstrings in the sourcecode, using the `autodoc` extension within Sphinx (specified during the 'quickstart' configuration). The documentation can be built by running the following command,
 
 ```bash
 pipenv run sphinx-build -b html docs/source docs/build_html
