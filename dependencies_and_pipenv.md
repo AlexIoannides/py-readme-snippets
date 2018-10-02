@@ -28,11 +28,7 @@ pipenv install --dev
 
 This will install all of the direct project dependencies as well as the development dependencies (the latter a consequence of the `--dev` flag).
 
-<<<<<<< HEAD
 ### Running Python, IPython and JupyterLab from the Project's Virtual Environment
-=======
-### Running Python, IPython and Jupyter Lab from the Project's Virtual Environment
->>>>>>> 4e6eb0508610491726710ef39bd9cd16f520f15d
 
 In order to continue development in a Python environment that precisely mimics the one the project was initially developed with, use Pipenv from the command line as follows,
 
@@ -40,17 +36,13 @@ In order to continue development in a Python environment that precisely mimics t
 pipenv run python3
 ```
 
-<<<<<<< HEAD
 The `python3` command could just as well be `ipython3` or the JupterLab, for example,
-=======
-The `python3` command could just as well be `ipython3` or the Jupter Lab, for example,
->>>>>>> 4e6eb0508610491726710ef39bd9cd16f520f15d
 
 ```bash
 pipenv run jupyter lab
 ```
 
-This will fire-up a Jupyter Lab *where the default Python 3 kernel includes all of the direct and development project dependencies*. This is how we advise that the notebooks within this project are used.
+This will fire-up a JupyterLab *where the default Python 3 kernel includes all of the direct and development project dependencies*. This is how we advise that the notebooks within this project are used.
 
 ### Pipenv Shells
 
