@@ -46,7 +46,7 @@ Full details of all possible options can be found [here](http://spark.apache.org
 
 ## Passing Configuration Parameters to the ETL Job
 
-Although it is possible to pass arguments to `etl_job.py`, as you would for any generic Python module running as a 'main' program  - by specifying them after the module's filename and then parsing these command line arguments - this can get very complicated, very quickly, especially when there are lot of parameters (e.g. credentials for multiple databases, table names, SQL snippets, etc.). This also makes debugging the code from within a Python interpreter extremely awkward, as you don't have access to the command line arguments that would ordinarily be passed to the code, when calling it from the command line.
+Although it is possible to pass arguments to `etl_job.py`, as you would for any generic Python module running as a 'main' program  - by specifying them after the module's filename and then parsing these command line arguments - this can get very complicated, very quickly, especially when there are lot of parameters (e.g. credentials for multiple databases, table names, SQL snippets, etc.). This also makes debugging the code from within a Python interpreter is extremely awkward, as you don't have access to the command line arguments that would ordinarily be passed to the code, when calling it from the command line.
 
 A much more effective solution is to send Spark a separate file - e.g. using the `--files etl_config.json` flag with `spark-subit` - containing the configuration in JSON format, which can be parsed into a Python dictionary in one line of code with `json.loads(config_file_contents)`. Testing the code from within a Python interactive console session is also greatly simplified, as all one has to do to access configuration parameters for testing, is to copy and paste the contents of the file - e.g.,
 
@@ -60,7 +60,7 @@ For the exact details of how the configuration file is located, opened and parse
 
 ## Testing and Debugging Spark Jobs Using `start_spark`
 
-It is not pracital to test and debug Spark jobs by sending them to a cluster using `spark-submit` and examining stack traces for clues on what went wrong. A more productive workflow is to use an interactive console session (e.g. IPython) or a debugger (e.g. the Python dubugger in Visual Studio Code). In practice, however, it can be hard to test and debug Spark jobs in this way, as they implicity rely on arguements that are sent to `spark-submit`, which are not available in a console or debug session.
+It is not pracital to test and debug Spark jobs by sending them to a cluster using `spark-submit` and examining stack traces for clues on what went wrong. A more productive workflow is to use an interactive console session (e.g. IPython) or a debugger (e.g. the `pdb` package in the Python standard library or the Python dubugger in Visual Studio Code). In practice, however, it can be hard to test and debug Spark jobs in this way, as they implicity rely on arguements that are sent to `spark-submit`, which are not available in a console or debug session.
 
 We wrote the `start_spark` function - found in `common/spark.py` - to facilitate the development of Spark jobs that are aware of the context in which they are being executed - i.e. as `spark-submit` jobs or within an IPython console, etc. The expected location of the Spark and job configuration parameters required by the job, is contingent on which execution context has been detected. The doscstring for `start_spark` gives the precise details,
 
@@ -128,7 +128,7 @@ More generally, transformation functions should be designed to be idempotent. Th
 
 ## Testing
 
-In order to test with Spark, we use the `pyspark` Python package, which is bundled with the Spark JARs required to programmatically start-up and tear-down a local Spark instance, on a per-test-suite basis (we recommend using the `setUp` and `tearDown` methods in `unittest.TestCase` to do this once per test-suite). Note, that using `pyspark` to run Spark is an alternative way of developing with Spark as opposed to using the PySpark shell or `spark-submit`. 
+In order to test with Spark, we use the `pyspark` Python package, which is bundled with the Spark JARs required to programmatically start-up and tear-down a local Spark instance, on a per-test-suite basis (we recommend using the `setUp` and `tearDown` methods in `unittest.TestCase` to do this once per test-suite). Note, that using `pyspark` to run Spark is an alternative way of developing with Spark as opposed to using the PySpark shell or `spark-submit`.
 
 Given that we have chosen to structure our ETL jobs in such a way as to isolate the 'Transformation' step into its own function (see 'Structure of an ETL job' above), we are free to feed it a small slice of 'real-world' production data that has been persisted locally - e.g. in `tests/test_data` or some easily accessible network directory - and check it against known results (e.g. computed manually or interactively within a Python interactive console session).
 
@@ -170,7 +170,7 @@ then
 
     # zip dependencies
     if [ ! -d packages ]
-    then 
+    then
         echo 'ERROR - pip failed to import dependencies'
         exit 1
     fi
@@ -183,7 +183,7 @@ then
     # remove temporary directory and requirements.txt
     rm -rf packages
     rm requirements.txt
-    
+
     # add local modules
     echo '... adding all modules from local utils package'
     zip -ru9 packages.zip utils
